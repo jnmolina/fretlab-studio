@@ -9,6 +9,8 @@ import {
   Hand,
   Zap,
   Drum,
+  Search,
+  Sparkles,
 } from 'lucide-react';
 import { GuitarTone } from '../lib/audio';
 import { Tuning } from '../lib/theory';
@@ -29,6 +31,7 @@ interface HomeGuidedViewProps {
   setRootPc: (pc: number) => void;
   setGrooveId: (g: GrooveId) => void;
   setBpm: (b: number) => void;
+  onOpenSearch: () => void;
 }
 
 const STAGES: {
@@ -82,6 +85,7 @@ export const HomeGuidedView: React.FC<HomeGuidedViewProps> = ({
   setRootPc,
   setGrooveId,
   setBpm,
+  onOpenSearch,
 }) => {
   const [activeStage, setActiveStage] = useState<LessonStage>('warmups');
   const [customLessons, setCustomLessons] = useState<TabLesson[]>(() =>
@@ -186,6 +190,36 @@ export const HomeGuidedView: React.FC<HomeGuidedViewProps> = ({
 
   return (
     <div className="space-y-5">
+      {/* Prominent Home Search & AI Guitar Coach Bar */}
+      <button
+        type="button"
+        onClick={onOpenSearch}
+        className="flex w-full items-center justify-between gap-3 rounded-2xl border border-cyan-500/40 bg-gradient-to-r from-[#12141c] via-cyan-950/20 to-[#12141c] px-4 py-3 text-left shadow-lg transition-all hover:border-cyan-400 hover:shadow-cyan-500/10"
+      >
+        <div className="flex items-center gap-3 min-w-0">
+          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-cyan-500/15 text-cyan-300">
+            <Search className="h-4 w-4" />
+          </div>
+          <div className="min-w-0">
+            <div className="flex items-center gap-1.5 text-xs font-bold text-slate-100 sm:text-sm">
+              <span>Search Tabs, Scales, Chords or Ask the AI Guitar Coach</span>
+              <Sparkles className="h-3.5 w-3.5 text-amber-400 shrink-0" />
+            </div>
+            <div className="truncate text-[11px] text-slate-400">
+              Try: &ldquo;Notes &amp; chords in D Harmonic Minor&rdquo;, &ldquo;Maj9 voicing&rdquo;, &ldquo;Hybrid picking&rdquo;, &ldquo;Sweep tap&rdquo;...
+            </div>
+          </div>
+        </div>
+        <div className="flex shrink-0 items-center gap-2">
+          <span className="rounded-lg bg-amber-500 px-3 py-1.5 text-xs font-bold text-slate-950">
+            Open Search / AI
+          </span>
+          <kbd className="hidden rounded-md border border-slate-700 bg-slate-900 px-2 py-1 font-mono text-[10px] text-slate-300 sm:inline-block">
+            Ctrl+K
+          </kbd>
+        </div>
+      </button>
+
       {/* 4-Stage Learning Plan Stepper */}
       <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-5">
         {STAGES.map((st) => {

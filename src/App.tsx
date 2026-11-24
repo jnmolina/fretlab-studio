@@ -200,6 +200,7 @@ export function App() {
             setRootPc={setRootPc}
             setGrooveId={setGrooveId}
             setBpm={setBpm}
+            onOpenSearch={() => setIsSearchOpen(true)}
           />
         )}
 

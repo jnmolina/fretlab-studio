@@ -1,5 +1,6 @@
 node_modules/
 dist/
-release/
+release/*
+!release/FretLab-Studio-Portable.exe
 *.local
 .DS_Store

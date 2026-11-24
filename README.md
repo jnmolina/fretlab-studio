@@ -1,57 +1,43 @@
 # 🎸 FretLab Studio — Guitar Mastery & Tab Studio
 
-An interactive guitar mastery, music theory, and **TuxGuitar / Guitar Pro-style tab studio** built for experienced players bridging **Classical & Acoustic fingerstyle (`p-i-m-a`)** into **modern Electric Pick, Hybrid Picking, and Band Styles** (**Polyphia**, **Unearth**, **Deftones**, and **HORSE the band**).
+An interactive guitar learning app, music theory studio, and editable 6-string tab player built to take you from **Classical & Acoustic foundations** into **modern Electric Pick and Hybrid Picking**.
 
 ---
 
-## 🚀 3 Ways to Use FretLab Studio
+## 🚀 Try It or Download
 
-### 1. 🌐 Try It Instantly in Your Browser (Desktop & Mobile)
-No install required—works directly in any desktop, iPhone, or Android browser:
-👉 **[Launch Live Web App: https://jnmolina.github.io/fretlab-studio/](https://jnmolina.github.io/fretlab-studio/)**
+1. **🌐 Launch Live Web App (Desktop & Mobile):**
+   👉 **[https://jnmolina.github.io/fretlab-studio/](https://jnmolina.github.io/fretlab-studio/)**
+   *(On iOS or Android, tap **"Add to Home Screen"** to use it as a full-screen mobile app.)*
 
-> **Mobile Tip:** On iOS (Safari) or Android (Chrome), open the link above and tap **"Add to Home Screen"** to install FretLab Studio as a full-screen mobile app.
+2. **💻 Download Portable Windows `.exe` (Offline Desktop App):**
+   👉 **[Download `FretLab-Studio-Portable.exe`](https://github.com/jnmolina/fretlab-studio/raw/main/release/FretLab-Studio-Portable.exe)**
+
+3. **📦 Download or Run the Full Project:**
+   - **[Download Full Project ZIP](https://github.com/jnmolina/fretlab-studio/archive/refs/heads/main.zip)**, or clone with Git:
+     ```bash
+     git clone https://github.com/jnmolina/fretlab-studio.git
+     cd fretlab-studio
+     npm install
+     npm run dev
+     ```
 
 ---
 
-### 2. 💻 Download the Standalone Portable Windows `.exe`
-Run FretLab Studio offline on any 64-bit Windows PC as a self-contained desktop app (no installer or Node.js required):
-👉 **[Download `FretLab-Studio-Portable.exe` (Direct Download)](https://github.com/jnmolina/fretlab-studio/raw/main/release/FretLab-Studio-Portable.exe)**
-*(Or view it in the repository at [`release/FretLab-Studio-Portable.exe`](./release/FretLab-Studio-Portable.exe))*
+## 🎯 Step-by-Step Practice Flow
 
----
-
-### 3. 📦 Download or Clone the Full Project (Source Code)
-Want to customize the lessons, add your own band presets, or build from source?
-
-- **Download ZIP:** Click the green **`<> Code`** button at the top of [github.com/jnmolina/fretlab-studio](https://github.com/jnmolina/fretlab-studio) and select **Download ZIP** (or [click here to download the full repo ZIP](https://github.com/jnmolina/fretlab-studio/archive/refs/heads/main.zip)).
-- **Or Clone with Git:**
-  ```bash
-  git clone https://github.com/jnmolina/fretlab-studio.git
-  cd fretlab-studio
-  npm install
-  npm run dev
-  ```
-- **Rebuild the Portable Windows `.exe`:**
-  ```bash
-  npm run dist:portable
-  ```
+1. **Step 1 — Warm-Ups:** Build left-hand finger independence, chromatic string crossing, and clean hammer-on/pull-off slurs.
+2. **Step 2 — Chords & Arpeggios:** Learn triad inversions up the neck, extended 7th/9th/11th voicings, and diminished/harmonic minor climbs.
+3. **Step 3 — Fingerstyle (`P-I-M-A`):** Develop right-hand sequential planting, thumb-bass separation, and tremolo (`p-a-m-i`) control.
+4. **Step 4 — Pick & Hybrid Picking:** Bridge fingerstyle independence into flatpicking, hybrid string-skips (`Pick + M + R`), pedal-point riffing, sweep-tapping, and harmonics.
+5. **Step 5 — Save Custom Lessons:** Edit any tab on the 6-string staff and save your own custom lessons to practice later.
 
 ---
 
 ## ✨ Key Features
 
-- **Home 4-Stage Guided Practice Plan:**
-  1. **Step 1: Warm-Ups** (*1-2-3-4 Chromatic Spider*, *Left-Hand Stretch & Legato Slurs*)
-  2. **Step 2: Chords & Arpeggios** (*Triad Inversions Up the Neck*, *Lush Add9 & Maj9 Clouds*, *Harmonic Minor & Diminished 7th Climbs*)
-  3. **Step 3: Fingerstyle (`P-I-M-A`)** (*Giuliani Sequential Planting & Thumb-Bass Separation*, *Classical Tremolo `p-a-m-i` into Harp Harmonics*)
-  4. **Step 4: Pick & Hybrid (Bands)** (*Polyphia Hybrid String-Skips*, *Unearth 5-7-8 Pedal Gallop & Sweep-Tap Apex*, *Deftones Syncopated PM → Shoegaze Wall*, *HORSE the band 8-Bit Synth Arpeggio & Panic Stab*)
-- **TuxGuitar / Guitar Pro Interactive 6-String Tab Editor:**
-  - Click any string/beat cell and type fret numbers (`0–24`) or use the on-screen touch keypad.
-  - Built-in **Speed Trainer (`50% / 75% / 100%`)**, right-hand picking/articulation markers (`↓`, `↑`, `p`, `i`, `m`, `a`, `Pick`, `M`, `R`, `PM`, `Sweep`, `Tap`, `Harm`, `H/O`), and **Save as Custom Lesson** persistence.
-- **Drum Loops + Supporting Root Bass & Harmony Chord Pad:**
-  - 8 built-in Web Audio drum grooves (*Basic 4/4 Drum Beat*, *Acoustic / Fingerstyle Pulse*, *Syncopated Groove / Funk*, *Trap / Math-Rock*, *Half-Time Alt-Metal*, *Double-Kick Metal*, *Fast Nintendocore*, and *Metronome Click*) paired with a real-time **Root-Note Bassline** and **Supporting Harmony Pad** (`Minor`, `Major`, `Maj7`, `Power 5th`).
-- **Scales, Chords, Circle of Fifths & 12-Step Band Roadmap:**
-  - Interactive 6-string fretboard supporting **Standard**, **Drop D**, **Drop C**, and **DADGAD** tunings plus 5 synthesized guitar tones (*Classical Nylon*, *Acoustic Steel*, *Clean Electric*, *High-Gain Metal*, and *8-Bit Chiptune*).
-- **Quick Search & Minimal AI Guitar Coach (`Ctrl+K`):**
-  - Press `Ctrl+K` (or click **Search / Ask AI**) to jump to any tab, scale, chord, or drum beat, or ask music theory questions (e.g., *"Notes & chords in D Harmonic Minor"*, *"How to play like Unearth?"*, *"Bridge Classical PIMA to Polyphia hybrid"*).
+- **Interactive 6-String Tab Editor:** Click any beat/string cell to enter fret numbers (`0–24`), set right-hand picking markers, slow down playback with the **Speed Trainer (`50% / 75% / 100%`)**, and save custom tabs.
+- **Drum Loops + Root Bass & Harmony Pad:** Practice over 8 built-in drum grooves with an automatic **Root-Note Bassline** and **Supporting Harmony Chord Pad** (`Minor`, `Major`, `Maj7`, `Power 5th`).
+- **Scales, Chords & Music Theory Explorer:** Full 6-string fretboard with interval/note toggles, parallel mode brightness spectrum, Circle of Fifths, secondary dominants, and looping chord progressions.
+- **5 Guitar Tones & 4 Tunings:** Switch instantly between *Classical Nylon*, *Acoustic Steel*, *Clean Electric*, *High-Gain*, and *8-Bit* tones across *Standard*, *Drop D*, *Drop C*, and *DADGAD* tunings.
+- **Quick Search & AI Guitar Coach (`Ctrl+K`):** Jump to any scale, chord, tab, or drum loop, or ask theory and practice questions right inside the app.

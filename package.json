@@ -1,0 +1,52 @@
+{
+  "name": "fretlab-guitar-mastery",
+  "private": true,
+  "version": "1.0.0",
+  "description": "FretLab Studio — Classical to Hybrid Guitar Mastery",
+  "author": "FretLab Studio",
+  "main": "electron/main.cjs",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "dist:portable": "tsc -b && vite build && electron-builder --win portable"
+  },
+  "build": {
+    "appId": "com.fretlab.studio",
+    "productName": "FretLab Studio",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*"
+    ],
+    "win": {
+      "target": [
+        "portable"
+      ],
+      "signAndEditExecutable": false
+    },
+    "portable": {
+      "artifactName": "FretLab-Studio-Portable.exe"
+    }
+  },
+  "dependencies": {
+    "lucide-react": "^0.460.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.20",
+    "electron": "28.3.3",
+    "electron-builder": "24.13.3",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.15",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.11"
+  }
+}

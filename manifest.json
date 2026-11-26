@@ -1,0 +1,10 @@
+{
+  "name": "FretLab Studio — Guitar Mastery & Tab Editor",
+  "short_name": "FretLab",
+  "description": "Interactive 6-string tab editor, drum & bass backing tracks, and classical-to-hybrid guitar mastery.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#0b0c10",
+  "theme_color": "#0b0c10",
+  "orientation": "any"
+}

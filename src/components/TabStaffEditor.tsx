@@ -20,6 +20,8 @@ interface TabStaffEditorProps {
   tone: GuitarTone;
   onSaveCustomLesson: (saved: TabLesson) => void;
   onDeleteCustomLesson?: (id: string) => void;
+  onActiveColumnChange?: (col: TabColumn | null, selectedStrIdx: number) => void;
+  externalFretInput?: { fret: number; stringIdx: number; timestamp: number } | null;
 }
 
 const RH_MARKERS = ['↓', '↑', 'p', 'i', 'm', 'a', 'Pick', 'M', 'R', 'PM', 'Sweep', 'Tap', 'Harm', 'H/O'];
@@ -30,6 +32,8 @@ export const TabStaffEditor: React.FC<TabStaffEditorProps> = ({
   tone,
   onSaveCustomLesson,
   onDeleteCustomLesson,
+  onActiveColumnChange,
+  externalFretInput,
 }) => {
   const [columns, setColumns] = useState<TabColumn[]>(() =>
     lesson.columns.map((c) => ({ ...c, frets: [...c.frets] }))
@@ -39,7 +43,7 @@ export const TabStaffEditor: React.FC<TabStaffEditorProps> = ({
   const [stage, setStage] = useState<LessonStage>(lesson.stage);
   const [description, setDescription] = useState(lesson.description);
   const [bpm, setBpm] = useState(lesson.bpm);
-  const [speedMultiplier, setSpeedMultiplier] = useState<number>(1); // 0.5, 0.75, 1.0 (Guitar Pro Speed Trainer!)
+  const [speedMultiplier, setSpeedMultiplier] = useState<number>(1); // 0.5, 0.75, 1.0 Speed Trainer
   const [useLessonTone, setUseLessonTone] = useState<boolean>(true);
 
   // Selected cell on the 6-string staff: { colIdx, strIdx (0=low E .. 5=high e) }
@@ -81,6 +85,22 @@ export const TabStaffEditor: React.FC<TabStaffEditorProps> = ({
   useEffect(() => {
     return () => stopPlayback();
   }, []);
+
+  // Notify parent (for live Fretboard sync!) whenever activePlayCol, selectedCell, or columns change
+  useEffect(() => {
+    const targetIdx = activePlayCol !== null ? activePlayCol : selectedCell.colIdx;
+    const col = columns[targetIdx] ?? null;
+    onActiveColumnChange?.(col, selectedCell.strIdx);
+  }, [activePlayCol, selectedCell, columns]);
+
+  // Allow clicking the live Fretboard above the tab to enter a fret directly into the selected beat!
+  useEffect(() => {
+    if (!externalFretInput) return;
+    setSelectedCell((prev) => {
+      setCellFret(prev.colIdx, externalFretInput.stringIdx, externalFretInput.fret);
+      return { colIdx: prev.colIdx, strIdx: externalFretInput.stringIdx };
+    });
+  }, [externalFretInput]);
 
   const playColumnAudio = (col: TabColumn) => {
     const dur = col.rh === 'PM' ? 0.18 : 0.85;
@@ -145,7 +165,7 @@ export const TabStaffEditor: React.FC<TabStaffEditorProps> = ({
     });
   };
 
-  // Guitar Pro / TuxGuitar style keyboard navigation & 2-digit fret entry
+  // Keyboard navigation & 2-digit fret entry
   const handleStaffKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
     const { colIdx, strIdx } = selectedCell;
     if (e.key === 'ArrowRight') {
@@ -226,7 +246,7 @@ export const TabStaffEditor: React.FC<TabStaffEditorProps> = ({
 
   return (
     <div className="rounded-2xl border border-slate-800 bg-[#12141c] p-4 sm:p-5 shadow-xl space-y-4">
-      {/* Top Transport & Title Bar (Guitar Pro Style) */}
+      {/* Top Transport & Title Bar */}
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800/80 pb-3">
         <div className="flex-1 min-w-[220px]">
           <div className="flex flex-wrap items-center gap-2">
@@ -260,7 +280,7 @@ export const TabStaffEditor: React.FC<TabStaffEditorProps> = ({
             <span>{isPlaying ? 'Stop Tab' : 'Play Tab'}</span>
           </button>
 
-          {/* Guitar Pro Speed Trainer (50% / 75% / 100%) */}
+          {/* Speed Trainer (50% / 75% / 100%) */}
           <div className="flex items-center gap-1 rounded-xl border border-slate-800 bg-slate-900 p-1 text-xs">
             <Gauge className="ml-1.5 h-3.5 w-3.5 text-cyan-400" />
             {[0.5, 0.75, 1].map((mult) => (
@@ -304,7 +324,7 @@ export const TabStaffEditor: React.FC<TabStaffEditorProps> = ({
         </div>
       </div>
 
-      {/* TuxGuitar / Guitar Pro 6-Line Tab Staff */}
+      {/* Interactive 6-Line Tab Staff */}
       <div
         tabIndex={0}
         onKeyDown={handleStaffKeyDown}
@@ -312,7 +332,7 @@ export const TabStaffEditor: React.FC<TabStaffEditorProps> = ({
       >
         <div className="mb-2 flex items-center justify-between text-[11px] text-slate-400">
           <span>
-            <strong className="text-amber-300">TuxGuitar / Guitar Pro Staff:</strong> Click any cell &amp; type fret numbers (<code className="text-slate-200">0–24</code>), arrow keys to move, <code className="text-slate-200">Backspace</code> to clear, or use the keypad below.
+            <strong className="text-amber-300">Interactive 6-String Tab Staff:</strong> Click any cell &amp; type fret numbers (<code className="text-slate-200">0–24</code>), arrow keys to move, <code className="text-slate-200">Backspace</code> to clear, or use the keypad below.
           </span>
           <span className="font-mono text-[10px] text-slate-500">
             Effective Tempo: {effectiveBpm} BPM
